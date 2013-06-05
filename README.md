@@ -1,7 +1,7 @@
 lua-persistor
 =============
 
-Transparent persistance for Lua data! Seriously!
+Transparent persistence for Lua data! Seriously!
 
 * Depends on luafilesystem
 * Keys can only be strings valid as filenames
