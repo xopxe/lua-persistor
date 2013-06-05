@@ -9,8 +9,8 @@ Transparent persistance for Lua data! Seriously!
 * Contains a recursive directory purger, handle with care.
 
 
-Howto
-=====
+How?
+-----
 
 ```
 -- load library
@@ -29,5 +29,5 @@ print ( 2 * p.pi * p.circle.radius)
 ```
 
 Who?
-====
+----
 xxopxe@gmail.com
