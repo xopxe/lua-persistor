@@ -5,8 +5,9 @@ Transparent persistence for Lua data! Seriously!
 
 * Depends on luafilesystem
 * Keys can only be strings valid as filenames
-* Can store/retrieve tables, strings, numbers and booleans.
+* Can store/retrieve tables (no loops!), strings, numbers and booleans.
 * Contains a recursive directory purger, handle with care.
+ 
 
 
 How?
