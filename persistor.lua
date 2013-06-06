@@ -43,6 +43,7 @@ local function new_mt(p)
 		__newindex = function(table, key, value)
 			local filepath = p..'/'..key
 			purge_tree(filepath)
+			filepath_cache[filepath] = nil
 			if type(value) == 'table' then
 				assert(lfs.mkdir(filepath))
 				--recursively add table content
@@ -50,7 +51,7 @@ local function new_mt(p)
 				for k, v in pairs(value) do
 					subtable[k] = v
 				end
-			else
+			elseif value ~= nil then
 				local f = io.open(filepath, 'w')
 				f:write(type(value)..'\n'..tostring(value))
 				f:close()

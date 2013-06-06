@@ -11,4 +11,6 @@ ret.ccc = 3.14
 print ('read3->', type(ret.ccc), ret.ccc)
 p.aaa.ddd={eee=true}
 print ('read4->', type(p.aaa.ddd.eee), p.aaa.ddd.eee)
-
+ret.bbb= nil
+assert (ret.bbb == nil)
+assert (type(ret.bbb) == 'nil') 
