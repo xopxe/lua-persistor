@@ -2,6 +2,20 @@ local lfs = require 'lfs'
 
 local M = {}
 
+local function purge_tree (path)
+	local mode = lfs.attributes(path, 'mode')
+	if mode == 'directory' then
+		for file in lfs.dir(path) do
+       			if file ~= "." and file ~= ".." then
+       		  		purge_tree (path..'/'..file)
+           		end
+ 		end
+		lfs.rmdir(path)
+	elseif mode == 'file' then
+		os.remove(path)
+	end
+end
+
 local function new_mt(p)
 	local filepath_cache = setmetatable({}, {__mode='v'})
 	local mt = {
@@ -27,19 +41,6 @@ local function new_mt(p)
 			end
 		end,
 		__newindex = function(table, key, value)
-			local function purge_tree (path)
-				local mode = lfs.attributes(path, 'mode')
-				if mode == 'directory' then
-					for file in lfs.dir(path) do
-			       			if file ~= "." and file ~= ".." then
-			       		  		purge_tree (path..'/'..file)
-			           		end
-			 		end
-					lfs.rmdir(path)
-				elseif mode == 'file' then
-					os.remove(path)
-				end
-			end
 			local filepath = p..'/'..key
 			purge_tree(filepath)
 			if type(value) == 'table' then
