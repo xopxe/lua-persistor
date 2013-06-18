@@ -35,7 +35,7 @@ local function new_mt(p)
 					['boolean'] = function (s) return s=='true' end,
 				}
 				local typecast = assert(supported_types[valuetype], 'unsupported type')
-				local value = typecast( f:read('*l') )
+				local value = typecast( f:read('*a') )
 				f:close()
 				return value
 			end
