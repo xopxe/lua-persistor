@@ -53,7 +53,9 @@ local function new_mt(p)
         for k, v in pairs(value) do
           subtable[k] = v
         end
-      elseif value ~= nil then
+      elseif value == nil then
+        os.remove(filepath)
+      else -- value ~= nil
         local f = io.open(filepath, 'w')
         f:write(type(value)..'\n'..tostring(value))
         f:close()
