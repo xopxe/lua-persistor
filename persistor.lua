@@ -34,7 +34,7 @@ local function new_mt(p)
         filepath_cache[filepath] = proxy
         return proxy
       elseif mode == 'file' then
-        local f = io.open(filepath, 'r')
+        local f = assert(io.open(filepath, 'r'))
         local valuetype = f:read('*l')
         local typecast = assert(supported_types[valuetype], 'unsupported type')
         local value = typecast( f:read('*a') )
@@ -56,7 +56,7 @@ local function new_mt(p)
       elseif value == nil then
         os.remove(filepath)
       else -- value ~= nil
-        local f = io.open(filepath, 'w')
+        local f = assert(io.open(filepath, 'w'))
         f:write(type(value)..'\n'..tostring(value))
         f:close()
       end
